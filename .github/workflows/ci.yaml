@@ -3,10 +3,11 @@ on:
     push:
         branches: [ main ]
 jobs:
-    build:
+    job1:
+        name: ubuntu flow
         runs-on: ubuntu-latest
         steps:
-            -   name: Checkout code
+            -   name: usage code
                 uses: actions/checkout@v4
             -   name: Setup Node
                 uses: actions/setup-node@v4
@@ -14,5 +15,19 @@ jobs:
                     node-version: 18
             -   name: Install dependencies
                 run: npm install
-            -   name: echo
-                run: echo server.js
+            -   name: test
+                run: node test.js
+    job2:
+        name: windows flow
+        runs-on: windows-latest
+        steps:
+            -   name: usage code
+                uses: actions/checkout@v4
+            -   name: setup node
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 18
+            -   name: installing dependencies
+                run: npm install -y
+            -   name: test
+                run: node test.js
